@@ -15,13 +15,13 @@ import Utils.*;
 
 //Imports de mis clases
 import pfinal.Avion;
-import pfinal.Pista;
+/*import pfinal.Pista;
 import pfinal.Suelo;
 import pfinal.Torre;
-import pfinal.ATT;
+import pfinal.ATT;*/
 
 
-public class MiAeropueto implements Drawable {
+public class MiAeropuerto implements Drawable {
 
     //Inicializo variables de OpenGL
     private ShaderProgram shaderProgram;
@@ -33,17 +33,17 @@ public class MiAeropueto implements Drawable {
     private Dibujable misDibujables[] = new Dibujable[10];
 
     //Objetos
-    private Torre torreControl;
+    /*private Torre torreControl;
     private Torre miTerminal;
     private Suelo miSuelo;
-    private Pista pistaPpal;
+    private Pista pistaPpal;*/
     private Avion miAvion1;
     private Avion miAvion2;
 
-    public string texturaSuelo = "grass.jpg";
-    public string texturaPista = "road.jpg";
-    public string texturaCristal = "glass.jpg";
-    public string airbus380 = "a380.obj";
+    public String texturaSuelo = "mars.jpg";
+    public String texturaPista = "road.jpg";
+    public String texturaCristal = "glass.jpg";
+    public String airbus380 = "a380.obj";
 
     private float velocidadLenta = 0.5f;
     private float velocidadMedia = 0.7f;
@@ -55,24 +55,24 @@ public class MiAeropueto implements Drawable {
 
         //Clase que crea el shader e instancia los objetos
 
-        miSuelo = new Suelo();
+        /*miSuelo = new Suelo();
         pistaPpal = new Pista();
         torreControl = new Torre();
-        miTerminal = new Torre();
-        miAvion1 = new Avion;
-        miAvion2 = new Avion;
+        miTerminal = new Torre();*/
+        miAvion1 = new Avion();
+        miAvion2 = new Avion();
 
     }
 
     private void prepareBuffers() {
-        shaderProgram = openGLHelper.getshaderProgram();
+        shaderProgram = openGLHelper.getShaderProgram();
     }
     
     private void drawSomeModel() {
 
         // Clase que da a los objetos dibujables sus atributos pincipales
         // tales como: posición inicial, rotación, escala, textura, etc.
-
+    	/*
         //=========== Suelo ===========//
         miSuelo.setTexture(texturaSuelo);
         miSuelo.setRotation(0.0f, 0.0f, 1f, 0);
@@ -96,7 +96,7 @@ public class MiAeropueto implements Drawable {
         miTerminal.setRotation(0.0f, 0.0f, 1f, 0);
     	miTerminal.setPosition(25, 0.0f, -35.0f);
     	miTerminal.setScale(10.0f, 5.0f, 3.0f);
-
+		*/
     	//=========== Avión 1 ===========//
         miAvion1.setOBJ(airbus380);
         miAvion1.setSpeed(velocidadLenta);
@@ -114,12 +114,12 @@ public class MiAeropueto implements Drawable {
 
 		//=======   Array de dibujables ========//
 
-		misDibujables[0] = miSuelo;
+		/*misDibujables[0] = miSuelo;
 		misDibujables[1] = pistaPpal;
 		misDibujables[2] = torreControl;
-		misDibujables[3] = miTerminal;
-		misDibujables[4] = miAvion1;
-		misDibujables[5] = miAvion2;
+		misDibujables[3] = miTerminal;*/
+		misDibujables[0] = miAvion1;
+		misDibujables[1] = miAvion2;
 		
     }
 
