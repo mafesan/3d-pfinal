@@ -26,6 +26,7 @@ public class Avion extends Dibujable {
     float x, y, z;
     float sx, sy, sz;
     float rx, ry, rz, angulo;
-
+    
+    
     
 }
