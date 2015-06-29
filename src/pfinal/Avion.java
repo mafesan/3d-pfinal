@@ -3,9 +3,10 @@ package pfinal;
 
 // Imports de OpenGL
 import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
-import static org.lwjgl.opengl.GL15.gl.BindBuffer;
+import static org.lwjgl.opengl.GL15.glBindBuffer;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
+
 import org.lwjgl.opengl.GL11;
 import Utils.Matrix4f;
 import Utils.OpenGLHelper;
@@ -22,7 +23,7 @@ public class Avion extends Dibujable {
 
     private float velocidad;
 
-    int vbo_v, vbo_n, vbo_c;
+    int vbo_v, vbo_n, vbo_e, vbo_c;
     float x, y, z;
     float sx, sy, sz;
     float rx, ry, rz, angulo;
@@ -30,18 +31,21 @@ public class Avion extends Dibujable {
     private int uniModel;
 
 
-    public NewAvion() {
+    public Avion() {
 
         x = y = z = rx = ry = rz = 0.0f;
         sx = sy = sz = 1.0f;
+
     }
 
     public void setOBJ(String objFile) {
-        fmodel = new ModelLoader(objFile);
+        this.fmodel = new ModelLoader(objFile);
+        this.vbo_v = fmodel.createVerticesBuffer();
+        this.vbo_c = fmodel.createColorsBuffer();
     }
 
-    public void setSpeed(float velocidad) {
-        speed = velocidad;
+    public void setSpeed(float mi_velocidad) {
+        velocidad = mi_velocidad;
     }
 
     public void setRotation(float mi_angulo, float x, float y, float z) {
@@ -85,9 +89,10 @@ public class Avion extends Dibujable {
 
     public void dibujar(OpenGLHelper openGLHelper) {
 
-        count += this.speed
-
-        int posAttrib = openGLHelper.getShaderProgram().getAttributeLocation("glEnableVertexAttribArray(posAttrib);
+        count += this.velocidad;
+        
+        int posAttrib = openGLHelper.getShaderProgram().getAttributeLocation("aVertexPosition");
+        glEnableVertexAttribArray(posAttrib);
         glBindBuffer(GL_ARRAY_BUFFER, getVertexPositions());
 
         glVertexAttribPointer(posAttrib, 3, GL_FLOAT, false, 0, 0);
