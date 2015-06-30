@@ -35,28 +35,29 @@ public class MiAeropuerto implements Drawable {
     //Objetos
     /*private Torre torreControl;
     private Torre miTerminal;
-    private Suelo miSuelo;
+    
     private Pista pistaPpal;*/
+    private Suelo miSuelo;
     private Avion miAvion1;
     private Avion miAvion2;
 
     public String texturaSuelo = "mars.jpg";
     public String texturaPista = "road.jpg";
     public String texturaCristal = "glass.jpg";
-    public String airbus380 = "a380.obj";
+    public String airbus380 = "src/pfinal/a380.obj";
 
-    private float velocidadLenta = 0.5f;
-    private float velocidadMedia = 0.7f;
+    private float velocidadLenta = 0.25f;
+    private float velocidadMedia = 0.6f;
 
-    private final int elemDib = 6;
+    private final int elemDib = 3;
     private final int finDex = elemDib - 1;
     
     private void initObjects() {
 
         //Clase que crea el shader e instancia los objetos
 
-        /*miSuelo = new Suelo();
-        pistaPpal = new Pista();
+        miSuelo = new Suelo();
+        /*pistaPpal = new Pista();
         torreControl = new Torre();
         miTerminal = new Torre();*/
         miAvion1 = new Avion();
@@ -72,13 +73,13 @@ public class MiAeropuerto implements Drawable {
 
         // Clase que da a los objetos dibujables sus atributos pincipales
         // tales como: posición inicial, rotación, escala, textura, etc.
-    	/*
+    	
         //=========== Suelo ===========//
         miSuelo.setTexture(texturaSuelo);
         miSuelo.setRotation(0.0f, 0.0f, 1f, 0);
     	miSuelo.setPosition(10,0,0);
     	miSuelo.setScale(50.0f, 1.0f, 50.0f);
-
+    	/*
     	//=========== Pista ===========//
     	pistaPpal.setTexture(texturaPista);
     	pistaPpal.setRotation(0.0f, 0.0f, 1f, 0);
@@ -98,29 +99,27 @@ public class MiAeropuerto implements Drawable {
     	miTerminal.setScale(10.0f, 5.0f, 3.0f);
 		*/
     	//=========== Avión 1 ===========//
-        miAvion1.setOBJ(airbus380);
         miAvion1.setSpeed(velocidadLenta);
         miAvion1.setRotation(270.0f, 0.0f, 1f, 0);
-		miAvion1.setPosition(-50, 1.0f, 0.0f, 0.5f);
+		miAvion1.setPosition(-50, 1.0f, 0.0f);
 		miAvion1.setScale(0.0018f, 0.0018f, 0.0018f);
 
     	//=========== Avión 2 ===========//
-    	miAvion2.setOBJ(airbus380);
     	miAvion1.setSpeed(velocidadMedia);
     	miAvion2.setRotation(270f, 0.0f, 1f, 0);
-		miAvion2.setPosition(-50, 8.0f, -14.0f, 0.7f);
+		miAvion2.setPosition(-50, 8.0f, -14.0f);
 		miAvion2.setScale(0.0015f, 0.0015f, 0.0015f);
 
 
 		//=======   Array de dibujables ========//
 
-		/*misDibujables[0] = miSuelo;
-		misDibujables[1] = pistaPpal;
-		misDibujables[2] = torreControl;
-		misDibujables[3] = miTerminal;*/
+		/*
+		misDibujables[3] = pistaPpal;
+		misDibujables[4] = torreControl;
+		misDibujables[5] = miTerminal;*/
 		misDibujables[0] = miAvion1;
 		misDibujables[1] = miAvion2;
-		
+		misDibujables[2] = miSuelo;
     }
 
     @Override
@@ -132,10 +131,9 @@ public class MiAeropuerto implements Drawable {
 
         // Aplicamos polimorfismo dibujando todos los elementos del array de dibujables.
 
-
-         for(int dex = 0; dex <= finDex; dex++) {
+        for(int dex = 0; dex <= finDex; dex++) {
             misDibujables[dex].dibujar(openGLHelper);
-         }
+        }
      }
 
     public void run() {

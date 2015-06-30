@@ -16,8 +16,8 @@ import pfinal.ModelLoader;
 
 public class Avion extends Dibujable {
 
-    private ModelLoader fmodel;
-
+	private final ModelLoader fmodel = new ModelLoader("src/pfinal/a380.obj");
+    
     private float count, count2 = 0.0f;
     public float posX, posY, posZ;
 
@@ -35,14 +35,11 @@ public class Avion extends Dibujable {
 
         x = y = z = rx = ry = rz = 0.0f;
         sx = sy = sz = 1.0f;
+        vbo_v = fmodel.createVerticesBuffer();
+        vbo_c = fmodel.createColorsBuffer();
 
     }
 
-    public void setOBJ(String objFile) {
-        this.fmodel = new ModelLoader(objFile);
-        this.vbo_v = fmodel.createVerticesBuffer();
-        this.vbo_c = fmodel.createColorsBuffer();
-    }
 
     public void setSpeed(float mi_velocidad) {
         velocidad = mi_velocidad;
