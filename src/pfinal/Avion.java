@@ -18,7 +18,7 @@ public class Avion extends Dibujable {
 
     private ModelLoader fmodel;
 
-    private float count, count2, count3 = 0.0f;
+    private float count, count2 = 0.0f;
     public float posX, posY, posZ;
 
     private float velocidad;
