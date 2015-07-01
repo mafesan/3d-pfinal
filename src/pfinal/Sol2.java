@@ -25,32 +25,21 @@ import static org.lwjgl.system.MemoryUtil.NULL;
  *
  * @author MiguelAngel
  */
+
 public class Sol2 extends Dibujable{
     float x, y, z;
     float rx, ry, rz;
     float sx, sy, sz;
-    int speed = 600;
-    int num_people;
     private float count = 0;
     private float count2 = 0;
     private float count3 = 0;
     private int vbo_v;
     private int vbo_c;
+    private int vbo_t;
 
     public Sol2(){
     	x = y = z = rx = ry = rz = 0.0f;
         sx = sy = sz = 1.0f;
-    }
-    public void TakeOff() {
-        System.out.println("Avion despegando...");
-    }
-    
-    public void LandPlane() {
-        System.out.println("Aterrizaje OK");
-    }
-    
-    public void PlaneSpeed() {
-        System.out.println("La velocidad del avion es: " + speed + " km/h.");
     }
 
     float[] vertices = new float[]
@@ -127,7 +116,6 @@ public class Sol2 extends Dibujable{
     }
     @Override
     public void dibujar(OpenGLHelper openGLHelper) {
-        //System.out.println("Dibujando avión...");
     	count += 0.03f;
     	count2 += 0.01f;
     	count3 += 0.06f;
@@ -156,9 +144,15 @@ public class Sol2 extends Dibujable{
         glEnableVertexAttribArray(vertexColorAttribute);
         glBindBuffer(GL_ARRAY_BUFFER, vbo_c);
         glVertexAttribPointer(vertexColorAttribute, 3, GL_FLOAT, false, 0, 0);
-        float posX = 1 + (float)Math.cos(count);
-        float posY = 30 + (float)Math.sin(count2);
-        float posZ = -7 + (float)Math.sin(count3);
+        
+        int texcoordAttribute = openGLHelper.getShaderProgram().getAttributeLocation("texcoord");
+        glEnableVertexAttribArray(texcoordAttribute);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glVertexAttribPointer(texcoordAttribute, 2, GL_FLOAT, false, 0, 0);
+        
+        float posX = 25 + (float)Math.cos(count);
+        float posY = 10 + (float)Math.sin(count2);
+        float posZ = -35 + (float)Math.sin(count3);
         
         Matrix4f model = Matrix4f.rotate(count3+200, 0.7f, 1f, 1f);
         model = Matrix4f.scale(1.5f, 1.5f, 1.5f).multiply(model);
@@ -169,10 +163,3 @@ public class Sol2 extends Dibujable{
     }
     
 }
-
-
-/*Segun la tarjeta con el código que ha subido Agustinm
---> si no funciona: 
-donde pone #version 150 -->borrar
-poner 130 \n
-*/

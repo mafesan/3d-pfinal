@@ -16,6 +16,7 @@ import pfinal.Pista;
 import pfinal.Suelo;
 import pfinal.Torre;
 import pfinal.Terminal;
+import pfinal.Sol2;
 
 //Imports de OpenGL
 import Utils.*;
@@ -29,7 +30,7 @@ public class MainAeropuerto implements Drawable {
   //Inicializo mis variables
 
     //Array donde irán metidos todos los objetos dibujables
-    private Dibujable misDibujables[] = new Dibujable[11];
+    private Dibujable misDibujables[] = new Dibujable[12];
     //Objetos que voy a dibujar
     private Terminal miTerminal;
     private Torre supTorre;
@@ -42,12 +43,13 @@ public class MainAeropuerto implements Drawable {
     private Avion miAvion4;
     private Suelo miSuelo;
     private Pista pistaAux;
+    private Sol2 sol2;
     
     // Variables de control
     private float velocidadLenta = 0.15f;
     private float velocidadMedia = 0.4f;
     private boolean torreMueve = true;
-    private final int elemDib = 11;
+    private final int elemDib = 12;
     private final int finDex = elemDib - 1;
 
     private void initObjects() {
@@ -81,7 +83,7 @@ public class MainAeropuerto implements Drawable {
 		miAvion2 = new Avion();
 		miAvion3 = new Avion();
 		miAvion4 = new Avion();
-	  
+		sol2 = new Sol2();
 	}
 
     private void prepareBuffers() {
@@ -171,6 +173,7 @@ public class MainAeropuerto implements Drawable {
 		misDibujables[8] = miAvion3;
 		misDibujables[9] = miAvion4;
 		misDibujables[10] = pistaAux;
+		misDibujables[11] = sol2;
 		
 		// Aplicamos polimorfismo dibujando todos los elementos del array de dibujables.
 		for(int dex = 0; dex <= finDex; dex++) {
