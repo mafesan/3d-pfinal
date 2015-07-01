@@ -36,7 +36,7 @@ public class OpenGLHelper {
     private GLFWKeyCallback keyCallback;
     private GLFWCursorPosCallback cpCallback;
     
-    private static final int WIDTH = 700;
+    private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
     // The window handle
     private long window;
@@ -46,7 +46,7 @@ public class OpenGLHelper {
     private float deltaTime       = 0.0f; //length of frame
     private double lastFrame; // when the last frame was
     
-    private final float movementSpeed = 5.0f; //move 10 units per second
+    private final float movementSpeed = 5.5f; //move 10 units per second
     private double lastX = 400, lastY = 300;
     
     private String tutorialName = "Tutorial";
@@ -64,7 +64,7 @@ public class OpenGLHelper {
     }
     
     public void run(Drawable drawable) {
-        System.out.println("Hello LWJGL " + Sys.getVersion() + "!. " + tutorialName);
+        System.out.println("Ejecutando LWJGL " + Sys.getVersion() + " // " + tutorialName);
 
         try {
             loop(drawable);
@@ -253,6 +253,7 @@ public class OpenGLHelper {
     private void loop(Drawable drawable)
     {
         // Set the clear color
+    	// Cambio el color de fondo para que se vea azul
         glClearColor(0.0f, 0.39f, 0.8f, 0.0f);
         
         // Run the rendering loop until the user has attempted to close

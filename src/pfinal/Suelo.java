@@ -1,3 +1,11 @@
+/** 
+ *
+ * Clase Suelo de la práctica final de Gráficos y Visualización 3D
+ * Grado ISAM, curso 2014-2015
+ * Aeropuerto, 
+ * @author Miguel Ángel Fernández Sánchez
+ *
+ **/
 package pfinal;
 
 // Imports de OpenGL
@@ -56,15 +64,16 @@ public class Suelo extends Dibujable {
 		return vbo_e;
 	}
 
-    public void dibujar(OpenGLHelper openGLHelper) {
-
-        int posAttrib = openGLHelper.getShaderProgram().getAttributeLocation("aVertexPosition");
+    public void prepararBuffers(OpenGLHelper openGLHelper) {
+    	
+    	// Preparando Buffers de posición
+    	int posAttrib = openGLHelper.getShaderProgram().getAttributeLocation("aVertexPosition");
         glEnableVertexAttribArray(posAttrib);
         glBindBuffer(GL_ARRAY_BUFFER, getVertexPositions());
 
         glVertexAttribPointer(posAttrib, 3, GL_FLOAT, false, 0, 0);
 
-        // ----------------------- COLORS DATA -------------------------------//
+        // Preparando Buffers de color
         
         
         int vertexColorAttribute = openGLHelper.getShaderProgram().getAttributeLocation("aVertexColor");
@@ -72,21 +81,23 @@ public class Suelo extends Dibujable {
         glBindBuffer(GL_ARRAY_BUFFER, getVertexColor());
         glVertexAttribPointer(vertexColorAttribute, 3, GL_FLOAT, false, 0, 0);
         
-        // ----------------------- TEXTURE COORDS ----------------------------//
+        // Preparando Buffers de textura
      
         int texcoordAttribute = openGLHelper.getShaderProgram().getAttributeLocation("texcoord");
         glEnableVertexAttribArray(texcoordAttribute);
         glBindBuffer(GL_ARRAY_BUFFER, getTexCoord());
         glVertexAttribPointer(texcoordAttribute, 2, GL_FLOAT, false, 0, 0);
         
-        // ----------------------- ELEMENTS INDICES --------------------------//
+        // Preparando Buffers de elementos
         
         int ebo = getElementsBuffer();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-        //glBufferData(GL_ELEMENT_ARRAY_BUFFER, ebo, GL_STATIC_DRAW);
 
         int uniTex = openGLHelper.getShaderProgram().getUniformLocation("texImage");
         openGLHelper.getShaderProgram().setUniform(uniTex, 0);
+    }
+    
+    public void dibujar(OpenGLHelper openGLHelper) {
       
         Matrix4f model = Matrix4f.rotate(angulo, rx, ry, rz); 
         model = Matrix4f.scale(sx, sy, sz).multiply(model);
@@ -100,34 +111,26 @@ public class Suelo extends Dibujable {
 	}
 
     public void setRotation(float nangle, float x, float y, float z) {
-	
 		rx = x;
 		ry = y;
 		rz = z;
-		angulo = nangle;
-		
+		angulo = nangle;	
 	}
 
     public void setTexture(String textfile) {
-		
 		 texture =  Texture.loadTexture(textfile);
-		
 	}
 
     public void setPosition(float px, float py, float pz) {
-		
 		x = px;
 		y = py;
 		z = pz;
-		
 	}
 
     public void setScale(float nsx, float nsy, float nsz) {
-		
 		sx = nsx;
 		sy = nsy;
 		sz = nsz;
 	}
-
           
 }
