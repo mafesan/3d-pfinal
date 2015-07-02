@@ -1,3 +1,11 @@
+/** 
+ *
+ * Clase Sol de la práctica final de Gráficos y Visualización 3D
+ * Grado ISAM, curso 2014-2015
+ * Aeropuerto, 
+ * @author Miguel Ángel Fernández Sánchez
+ *
+ **/
 package pfinal;
 
 import Utils.*;
@@ -49,7 +57,7 @@ public class Sol extends Dibujable {
 
 	    private void drawSomeModel(OpenGLHelper openGLHelper) {
 	        /* Render X, Y, Z */
-	        Matrix4f model = Matrix4f.translate(0, 5, -2.2f);
+	        Matrix4f model = Matrix4f.translate(12, 20, -35f);
 	        glUniformMatrix4(uniModel, false, model.getBuffer());
 
 	        Matrix3f normalMatrix = model.multiply(openGLHelper.getViewMatrix()).toMatrix3f().invert();
