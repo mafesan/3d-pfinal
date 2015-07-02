@@ -16,7 +16,7 @@ import pfinal.Pista;
 import pfinal.Suelo;
 import pfinal.Torre;
 import pfinal.Terminal;
-import pfinal.Sol2;
+import pfinal.Sol;
 
 //Imports de OpenGL
 import Utils.*;
@@ -25,7 +25,8 @@ public class MainAeropuerto implements Drawable {
 	
 	//Inicializo variables de OpenGL
 	private ShaderProgram shaderProgram;
-    private final OpenGLHelper openGLHelper = new OpenGLHelper("pfinal", new FPCameraController(-40, -5, -20));
+    private final OpenGLHelper openGLHelper = new OpenGLHelper("Práctica final GyV3D - Aeropuerto - Miguel Angel Fernandez"
+    															, new FPCameraController(-40, -5, -20));
     
   //Inicializo mis variables
 
@@ -43,7 +44,7 @@ public class MainAeropuerto implements Drawable {
     private Avion miAvion4;
     private Suelo miSuelo;
     private Pista pistaAux;
-    private Sol2 sol2;
+    private Sol miSol;
     
     // Variables de control
     private float velocidadLenta = 0.15f;
@@ -51,7 +52,13 @@ public class MainAeropuerto implements Drawable {
     private boolean torreMueve = true;
     private final int elemDib = 12;
     private final int finDex = elemDib - 1;
-
+    private final String marte = "mars.jpg" ;
+    private final String pista1 = "road.jpg";
+    private final String pista2 = "road2.jpg";
+    private final String cristal1 = "glass.jpg" ;
+    private final String cristal2 = "glass2.jpg";
+    private final String metal = "blackmetal.jpg";
+    
     private void initObjects() {
     	
       //Clase que instancia los objetos
@@ -59,31 +66,31 @@ public class MainAeropuerto implements Drawable {
     	
 		shaderProgram = openGLHelper.getShaderProgram();  
 		miSuelo = new Suelo();
-		miSuelo.setTexture("mars.jpg");
+		miSuelo.setTexture(marte);
 		  
 		pistaPpal = new Pista();
-		pistaPpal.setTexture("road.jpg");
+		pistaPpal.setTexture(pista1);
 		 
 		pistaSec = new Pista();
-		pistaSec.setTexture("road2.jpg");
+		pistaSec.setTexture(pista2);
 		  
 		pistaAux = new Pista();
-		pistaAux.setTexture("road2.jpg");
+		pistaAux.setTexture(pista2);
 		  
 		miTerminal = new Terminal();
-		miTerminal.setTexture("glass.jpg");
+		miTerminal.setTexture(cristal1);
 		  
 		supTorre = new Torre();
-		supTorre.setTexture("glass2.jpg");
+		supTorre.setTexture(cristal2);
 		  
 		torreControl = new Torre();
-		torreControl.setTexture("blackmetal.jpg");
+		torreControl.setTexture(metal);
 		  
 		miAvion1 = new Avion();
 		miAvion2 = new Avion();
 		miAvion3 = new Avion();
 		miAvion4 = new Avion();
-		sol2 = new Sol2();
+		miSol = new Sol();
 	}
 
     private void prepareBuffers() {
@@ -173,7 +180,7 @@ public class MainAeropuerto implements Drawable {
 		misDibujables[8] = miAvion3;
 		misDibujables[9] = miAvion4;
 		misDibujables[10] = pistaAux;
-		misDibujables[11] = sol2;
+		misDibujables[11] = miSol;
 		
 		// Aplicamos polimorfismo dibujando todos los elementos del array de dibujables.
 		for(int dex = 0; dex <= finDex; dex++) {
